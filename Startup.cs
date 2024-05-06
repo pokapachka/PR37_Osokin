@@ -24,6 +24,9 @@ namespace ПР37_Осокин
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
+                app.UseStaticFiles();
+                app.UseMvcWithDefaultRoute();
             }
 
             app.UseRouting();
