@@ -1,0 +1,17 @@
+﻿@using ПР37_Осокин.Data.Models
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+@model IEnumerable<Items>
+@{
+    Layout = "_Layout";
+}
+<h2>Все предметы</h2>
+@{
+    foreach(var item in Model)
+    {
+        <div>
+            <h3>Модель: @item.Name</h3>
+            <p>Цена: @item.Price.ToString("c")</p>
+            <p>Категория: @item.Category.Name</p>
+        </div>
+    }
+}
