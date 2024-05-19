@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ПР37_Осокин.Data.DataBase;
 using ПР37_Осокин.Data.Interfaces;
 using ПР37_Осокин.Data.Mocks;
 
@@ -18,8 +19,8 @@ namespace ПР37_Осокин
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<ICategorys, MockCategorys>();
-            services.AddTransient<IItems, MockItems>();
+            services.AddTransient<ICategorys, DBCategory>();
+            services.AddTransient<IItems, DBItems>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
