@@ -34,5 +34,21 @@ namespace ПР37_Осокин.Data.DataBase
                 return items;
             }
         }
+        public int Add(Items Item)
+        {
+            MySqlConnection MySqlConnection = Connection.MySqlOpen();
+            Connection.MySqlQuery($"INSERT INTO items (Name, Description, Img, Price, IdCategory) VALUES ('{Item.Name}', '{Item.Description}', '{Item.Img}', {Item.Price}, {Item.Category.Id});", MySqlConnection);
+            MySqlConnection.Close();
+            int IdItem = -1;
+            MySqlConnection = Connection.MySqlOpen();
+            MySqlDataReader mySqlDataReaderItem = Connection.MySqlQuery($"SELECT Id FROM items where Name = '{Item.Name}' And Description = '{Item.Description}' And Price = {Item.Price} And IdCategory = {Item.Category.Id};", MySqlConnection);
+            if (mySqlDataReaderItem.HasRows) 
+            { 
+                mySqlDataReaderItem.Read();
+                IdItem = mySqlDataReaderItem.GetInt32(0);
+            }
+            MySqlConnection.Close();
+            return IdItem;
+        }
     }
 }
