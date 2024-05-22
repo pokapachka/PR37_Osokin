@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections;
+using System.Collections.Generic;
 using ПР37_Осокин.Data.Interfaces;
+using ПР37_Осокин.Data.Models;
 using ПР37_Осокин.Data.ViewModell;
 
 namespace ПР37_Осокин.Controllers
@@ -21,6 +24,12 @@ namespace ПР37_Осокин.Controllers
             VMItems.Categorys = IAllCategorys.AllCategorys;
             VMItems.SelectCategory = id;
             return View(VMItems);
+        }
+        [HttpGet]
+        public ViewResult Add()
+        {
+            IEnumerable<Categories> Categorys = IAllCategorys.AllCategorys;
+            return View(Categorys);
         }
     }
 }
