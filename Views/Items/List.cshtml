@@ -8,12 +8,12 @@
     <select onchange="SelectCategory(this)">
         <option value="0">Выбрать ...</option>
         @{
-            foreach(var Category in Model.Categories)
+            foreach (var Category in Model.Categories)
             {
                 if (item.Id == Model.SelectCategory)
                 {
                     <div class="item">
-                        <img src="@item.Img"/>
+                        <img src="@item.Img" />
                         <div class="basket">
                             <div class="button" id="@item.Id">
                             </div>
@@ -29,17 +29,17 @@
         }
     </select>
     <script>
-        function SelectCategory(sender){
+        function SelectCategory(sender) {
             window.location = "/Items/List?id" + sender.value;
         }
     </script>
 </div>
 <h2>Все предметы</h2>
 @{
-    foreach(var item in Model)
+    foreach (var item in Model)
     {
         <div class="item">
-            <img src="@item.Img"/>
+            <img src="@item.Img" />
             <div class="data">
                 <h3>Модель: @item.Name</h3>
                 <div>Цена: @item.Price.ToString("c")</div>
@@ -48,4 +48,22 @@
             </div>
         </div>
     }
+}
+$(".item").children(".basket").children(".button").click(function(){
+    $(this).parent().children(".count").show();
+    $(this).hide();
+    $.ajax({
+        url: '@Url.Action("Baket", "Items")',
+        contentType: "applicaton/json; charset=utf-8",
+        data: { idItem: $(this).attr('id')},
+        datatype: "json",
+        success: SuccessBasket,
+        error: AjaxError    
+    });
+});
+function SuccessBasket(data){
+    console.log(data);
+}
+function AjaxError(){
+    console.log("Ошибка выполнения ajax");
 }
