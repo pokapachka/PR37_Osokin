@@ -10,8 +10,15 @@
         @{
             foreach(var Category in Model.Categories)
             {
-                if (Categories.Id == Model.SelectCategory)
+                if (item.Id == Model.SelectCategory)
                 {
+                    <div class="item">
+                        <img src="@item.Img"/>
+                        <div class="basket">
+                            <div class="button" id="@item.Id">
+                            </div>
+                        </div>
+                    </div>
                     <option selected="selected" value="@Categories.Id">@Categories.Name</option>
                 }
                 else
