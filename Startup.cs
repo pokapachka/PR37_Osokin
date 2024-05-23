@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 using ПР37_Осокин.Data.DataBase;
 using ПР37_Осокин.Data.Interfaces;
 using ПР37_Осокин.Data.Mocks;
+using ПР37_Осокин.Data.Models;
 
 namespace ПР37_Осокин
 {
     public class Startup
     {
+        public static List<ItemsBasket> BasketItem = new List<ItemsBasket>();
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
